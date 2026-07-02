@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
+
 <head>
 <meta charset="UTF-8">
 <title>Blooming 十月拾捌</title>
@@ -7,16 +8,34 @@
 <style>
 
 body{
-    font-family:Arial;
+    font-family: Arial;
+    background:#faf8f5;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     height:100vh;
-    background:#faf8f5;
+}
+
+.card{
+
+    background:white;
+
+    padding:50px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+
 }
 
 h1{
+
     color:#3c6655;
+
 }
 
 </style>
@@ -25,7 +44,44 @@ h1{
 
 <body>
 
-<h1>I love you, Irene ❤️</h1>
+<div class="card">
+
+<h1 id="name">Loading...</h1>
+
+<p id="message"></p>
+
+</div>
+
+<script>
+
+const id=new URLSearchParams(window.location.search).get("id");
+
+if(id=="001"){
+
+document.getElementById("name").innerHTML="Hello Melvin";
+
+document.getElementById("message").innerHTML="謝謝一路陪伴我們。";
+
+}
+
+else if(id=="002"){
+
+document.getElementById("name").innerHTML="Hello Irene";
+
+document.getElementById("message").innerHTML="I Love You ❤️";
+
+}
+
+else{
+
+document.getElementById("name").innerHTML="Hello Guest";
+
+document.getElementById("message").innerHTML="Welcome to our wedding.";
+
+}
+
+</script>
 
 </body>
+
 </html>
