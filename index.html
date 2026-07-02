@@ -54,29 +54,49 @@ h1{
 
 <script>
 
-const id=new URLSearchParams(window.location.search).get("id");
+const id = window.location.hash.substring(1);
 
-if(id=="001"){
+if(id=="201"){
 
-document.getElementById("name").innerHTML="Hello Melvin";
+document.getElementById("name").innerHTML="親愛的 Irene ❤️";
 
-document.getElementById("message").innerHTML="謝謝一路陪伴我們。";
+document.getElementById("message").innerHTML=
+"I Love You!!<br><br>謝謝妳一路陪著我，<br>未來也請繼續和我一起走下去。";
 
 }
 
-else if(id=="002"){
+else if(id=="202"){
 
-document.getElementById("name").innerHTML="Hello Irene";
+document.getElementById("name").innerHTML="給我的寶貝若雯 🌸";
 
-document.getElementById("message").innerHTML="I Love You ❤️";
+document.getElementById("message").innerHTML=
+"感謝妳總是對我這麼好。<br><br>有妳在身邊，<br>平凡的每一天都變得很幸福。";
+
+}
+
+else if(id=="203"){
+
+document.getElementById("name").innerHTML="Blooming 十月拾捌 🌿";
+
+document.getElementById("message").innerHTML=
+`
+妳是晚風，也是晨光。<br><br>
+
+在最平凡的日子裡，<br>
+悄悄開成我生命最美的一朵花。<br><br>
+
+願往後的每一年、每一天，<br>
+都與妳一起盛開。❤️
+`;
 
 }
 
 else{
 
-document.getElementById("name").innerHTML="Hello Guest";
+document.getElementById("name").innerHTML="Blooming 十月拾捌";
 
-document.getElementById("message").innerHTML="Welcome to our wedding.";
+document.getElementById("message").innerHTML=
+"Welcome to our wedding.";
 
 }
 
