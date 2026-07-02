@@ -2,39 +2,92 @@
 <html lang="zh-TW">
 
 <head>
+
 <meta charset="UTF-8">
-<title>Blooming 十月拾捌</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>🌿 Blooming 十月拾捌</title>
 
 <style>
 
 body{
-    font-family: Arial;
-    background:#faf8f5;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+margin:0;
 
-    height:100vh;
+font-family:Arial, Helvetica, sans-serif;
+
+background:#f8f6f1;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:100vh;
+
+color:#35594a;
+
 }
 
 .card{
 
-    background:white;
+width:90%;
 
-    padding:50px;
+max-width:480px;
 
-    border-radius:20px;
+background:white;
 
-    text-align:center;
+padding:45px;
 
-    box-shadow:0 5px 20px rgba(0,0,0,.1);
+border-radius:24px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+text-align:center;
+
+}
+
+.logo{
+
+font-size:52px;
 
 }
 
 h1{
 
-    color:#3c6655;
+margin-top:10px;
+
+margin-bottom:5px;
+
+}
+
+.subtitle{
+
+letter-spacing:3px;
+
+color:#888;
+
+margin-bottom:35px;
+
+}
+
+#countdown{
+
+font-size:42px;
+
+font-weight:bold;
+
+margin:20px 0;
+
+}
+
+.small{
+
+color:#777;
+
+line-height:1.8;
 
 }
 
@@ -46,9 +99,13 @@ h1{
 
 <div class="card">
 
-<h1 id="name">Loading...</h1>
+<div class="logo">🌿</div>
 
-<p id="message"></p>
+<h1>Blooming</h1>
+
+<div class="subtitle">October 18, 2026</div>
+
+<div id="content"></div>
 
 </div>
 
@@ -56,47 +113,170 @@ h1{
 
 const id = window.location.hash.substring(1);
 
+
+// 台灣婚禮開放時間
+const openTime = new Date("2026-10-18T12:00:00+08:00");
+
+
+// 每秒更新一次
+setInterval(updatePage,1000);
+
+updatePage();
+
+
+function updatePage(){
+
+const now = new Date();
+
+if(now < openTime){
+
+showCountdown(now);
+
+}else{
+
+showGuest();
+
+}
+
+}
+
+
+function showCountdown(now){
+
+const diff = openTime-now;
+
+const days=Math.floor(diff/(1000*60*60*24));
+
+const hours=Math.floor(diff/(1000*60*60))%24;
+
+const mins=Math.floor(diff/(1000*60))%60;
+
+const secs=Math.floor(diff/1000)%60;
+
+document.getElementById("content").innerHTML=`
+
+<div class="small">
+
+距離綻放還有
+
+</div>
+
+<div id="countdown">
+
+${days} 天
+
+</div>
+
+<div class="small">
+
+${hours} 小時 ${mins} 分 ${secs} 秒
+
+<br><br>
+
+謝謝您收到我們的邀請。
+
+<br>
+
+請將這份 Blooming
+
+<br>
+
+留到婚禮當天再開啟。
+
+<br><br>
+
+Every flower blooms
+
+at its own time.
+
+</div>
+
+`;
+
+}
+
+
+function showGuest(){
+
 if(id=="201"){
 
-document.getElementById("name").innerHTML="親愛的 Irene ❤️";
+document.getElementById("content").innerHTML=`
 
-document.getElementById("message").innerHTML=
-"I Love You!!<br><br>謝謝妳一路陪著我，<br>未來也請繼續和我一起走下去。";
+<h2>親愛的 Irene ❤️</h2>
+
+<p>
+
+I Love You!!
+
+<br><br>
+
+謝謝妳一路陪著我。
+
+</p>
+
+`;
 
 }
 
 else if(id=="202"){
 
-document.getElementById("name").innerHTML="給我的寶貝若雯 🌸";
+document.getElementById("content").innerHTML=`
 
-document.getElementById("message").innerHTML=
-"感謝妳總是對我這麼好。<br><br>有妳在身邊，<br>平凡的每一天都變得很幸福。";
+<h2>給若雯 🌸</h2>
+
+<p>
+
+感謝妳總是對我這麼好，
+
+我的寶貝若雯！
+
+</p>
+
+`;
 
 }
 
 else if(id=="203"){
 
-document.getElementById("name").innerHTML="Blooming 十月拾捌 🌿";
+document.getElementById("content").innerHTML=`
 
-document.getElementById("message").innerHTML=
-`
-妳是晚風，也是晨光。<br><br>
+<h2>《十月拾捌》</h2>
 
-在最平凡的日子裡，<br>
-悄悄開成我生命最美的一朵花。<br><br>
+<p>
 
-願往後的每一年、每一天，<br>
-都與妳一起盛開。❤️
+十月花朝初識君<br>
+
+一念相知定良緣<br>
+
+兩心相契合佳偶<br>
+
+往昔長辭別舊篇<br>
+
+攜手共度拾珍愛<br>
+
+執心相伴捌孤行
+
+</p>
+
 `;
 
 }
 
 else{
 
-document.getElementById("name").innerHTML="Blooming 十月拾捌";
+document.getElementById("content").innerHTML=`
 
-document.getElementById("message").innerHTML=
-"Welcome to our wedding.";
+<h2>Blooming</h2>
+
+<p>
+
+Welcome to our wedding.
+
+</p>
+
+`;
+
+}
 
 }
 
