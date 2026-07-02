@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+  // 保留網址，例如 /b/201
+  var path = window.location.pathname.replace('/b', '');
+  window.location.replace('/b/?id=' + path.replace('/', ''));
+</script>
+</head>
+<body>
+</body>
+</html>
