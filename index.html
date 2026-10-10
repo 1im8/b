@@ -1,287 +1,108 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-
-<meta charset="UTF-8">
-
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>🌿 Blooming 十月拾捌</title>
-
+<meta name="theme-color" content="#f8f6f2">
+<meta name="robots" content="noindex,nofollow">
+<title>Blooming · 十月拾捌</title>
 <style>
-
-body{
-
-margin:0;
-
-font-family:Arial, Helvetica, sans-serif;
-
-background:#f8f6f1;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-height:100vh;
-
-color:#35594a;
-
-}
-
-.card{
-
-width:90%;
-
-max-width:480px;
-
-background:white;
-
-padding:45px;
-
-border-radius:24px;
-
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-
-text-align:center;
-
-}
-
-.logo{
-
-font-size:52px;
-
-}
-
-h1{
-
-margin-top:10px;
-
-margin-bottom:5px;
-
-}
-
-.subtitle{
-
-letter-spacing:3px;
-
-color:#888;
-
-margin-bottom:35px;
-
-}
-
-#countdown{
-
-font-size:42px;
-
-font-weight:bold;
-
-margin:20px 0;
-
-}
-
-.small{
-
-color:#777;
-
-line-height:1.8;
-
-}
-
+  :root {color-scheme:light; --ink:#315847; --muted:#817b80; --paper:#fff; --bg:#f8f6f2;}
+  *{box-sizing:border-box}
+  html,body{min-height:100%;margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:Arial,"Noto Sans TC","Microsoft JhengHei",sans-serif;display:flex;justify-content:center;align-items:center;padding:28px 18px}
+  .card{width:min(100%,735px);background:var(--paper);border-radius:30px;box-shadow:0 12px 36px rgba(57,53,43,.055);text-align:center;padding:68px clamp(24px,7vw,84px) 58px;animation:appear .5s ease}
+  .flower{font-size:50px;line-height:1.2;margin-bottom:16px}
+  h1{font-size:42px;line-height:1.1;letter-spacing:0.5px;margin:0 0 8px;font-weight:700}
+  .date{font-size:20px;letter-spacing:3.8px;color:#8a7d7d;margin:0}
+  .divider{width:56px;height:1px;background:#d9d6ce;margin:36px auto 30px}
+  .small{font-size:19px;line-height:1.8;color:#7d747b}
+  .days{font-size:56px;line-height:1.25;font-weight:bold;margin:32px 0 28px}
+  .clock{font-size:18px;color:#8b7c80;font-variant-numeric:tabular-nums;margin-bottom:44px}
+  .hint{font-size:19px;line-height:1.9;color:#817782;margin:0}
+  .quote{font-size:17px;line-height:1.8;margin:46px 0 0;color:#897d81}
+  .guest-name{font-size:26px;font-weight:700;letter-spacing:1px;margin:12px 0 26px}
+  .message{font-size:19px;line-height:2.1;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;color:#4f5350;margin:0}
+  .signature{margin-top:38px;color:#8a7d7d;font-size:16px;line-height:1.9}
+  .note{margin-top:25px;color:#8a7d7d;font-size:13px}
+  [hidden]{display:none!important}
+  @keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:600px){body{padding:15px 12px;align-items:flex-start}.card{margin:10px 0;padding:55px 26px 46px;border-radius:26px;min-height:calc(100dvh - 50px)}h1{font-size:36px}.date{font-size:16px;letter-spacing:2.8px}.small,.hint{font-size:16px}.days{font-size:50px}.clock{font-size:16px}.guest-name{font-size:23px}.message{font-size:17px;line-height:2}.flower{font-size:45px}.quote{margin-top:38px;font-size:15px}}
+  @media(prefers-reduced-motion:reduce){.card{animation:none}}
 </style>
-
-</head>
-
-<body>
-
-<div class="card">
-
-<div class="logo">🌿</div>
-
-<h1>Blooming</h1>
-
-<div class="subtitle">October 18, 2026</div>
-
-<div id="content"></div>
-
-</div>
-
-<script>
-
-const id = window.location.hash.substring(1);
-
-
-// 台灣婚禮開放時間
-const openTime = new Date("2026-10-18T12:00:00+08:00");
-
-
-// 每秒更新一次
-setInterval(updatePage,1000);
-
-updatePage();
-
-
-function updatePage(){
-
-const now = new Date();
-
-if(now < openTime){
-
-showCountdown(now);
-
-}else{
-
-showGuest();
-
-}
-
-}
-
-
-function showCountdown(now){
-
-const diff = openTime-now;
-
-const days=Math.floor(diff/(1000*60*60*24));
-
-const hours=Math.floor(diff/(1000*60*60))%24;
-
-const mins=Math.floor(diff/(1000*60))%60;
-
-const secs=Math.floor(diff/1000)%60;
-
-document.getElementById("content").innerHTML=`
-
-<div class="small">
-
-距離綻放還有
-
-</div>
-
-<div id="countdown">
-
-${days} 天
-
-</div>
-
-<div class="small">
-
-${hours} 小時 ${mins} 分 ${secs} 秒
-
-<br><br>
-
-謝謝您收到我們的邀請。
-
-<br>
-
-請將這份 Blooming
-
-<br>
-
-留到婚禮當天再開啟。
-
-<br><br>
-
-Every flower blooms
-
-at its own time.
-
-</div>
-
-`;
-
-}
-
-
-function showGuest(){
-
-if(id=="201"){
-
-document.getElementById("content").innerHTML=`
-
-<h2>親愛的 Irene ❤️</h2>
-
-<p>
-
-I Love You!!
-
-<br><br>
-
-謝謝妳一路陪著我。
-
-</p>
-
-`;
-
-}
-
-else if(id=="202"){
-
-document.getElementById("content").innerHTML=`
-
-<h2>給若雯 🌸</h2>
-
-<p>
-
-感謝妳總是對我這麼好，
-
-我的寶貝若雯！
-
-</p>
-
-`;
-
-}
-
-else if(id=="203"){
-
-document.getElementById("content").innerHTML=`
-
-<h2>《十月拾捌》</h2>
-
-<p>
-
-十月花朝初識君<br>
-
-一念相知定良緣<br>
-
-兩心相契合佳偶<br>
-
-往昔長辭別舊篇<br>
-
-攜手共度拾珍愛<br>
-
-執心相伴捌孤行
-
-</p>
-
-`;
-
-}
-
-else{
-
-document.getElementById("content").innerHTML=`
-
-<h2>Blooming</h2>
-
-<p>
-
-Welcome to our wedding.
-
-</p>
-
-`;
-
-}
-
-}
-
+<script src="./guests.js" defer></script>
+<script defer>
+(() => {
+  // 台灣時間 2026/10/18 13:30；明確指定 +08:00，避免手機時區差異。
+  const UNLOCK_TIME = new Date('2026-10-18T13:30:00+08:00').getTime();
+  const qs = new URLSearchParams(location.search);
+  // 測試網址：?preview=1#01。不會影響正式 QR Code；上線前可移除此功能。
+  const preview = qs.get('preview') === '1';
+  const $ = id => document.getElementById(id);
+  const format2 = n => String(n).padStart(2, '0');
+  function render() {
+    const secondsLeft = Math.max(0, Math.ceil((UNLOCK_TIME-Date.now())/1000));
+    const unlocked = preview || secondsLeft === 0;
+    $('countdown').hidden = unlocked;
+    $('blessing').hidden = !unlocked;
+    if (!unlocked) {
+      const d=Math.floor(secondsLeft/86400);
+      const h=Math.floor(secondsLeft%86400/3600);
+      const m=Math.floor(secondsLeft%3600/60);
+      const s=secondsLeft%60;
+      $('days').textContent=d+' 天';
+      $('clock').textContent=`${h} 小時 ${format2(m)} 分 ${format2(s)} 秒`;
+      return;
+    }
+    const idText = decodeURIComponent(location.hash.slice(1));
+    const id = /^\d+$/.test(idText) ? String(Number(idText)) : '';
+    const guest = window.BLOOM_GUESTS && window.BLOOM_GUESTS[id];
+    $('guestContent').hidden=!guest;
+    $('missing').hidden=!!guest;
+    if (guest) {
+      // textContent，不把祝福當 HTML 執行，避免符號破版。
+      $('guestName').textContent=guest.name;
+      $('guestMessage').textContent=guest.message;
+    }
+  }
+  window.addEventListener('DOMContentLoaded',()=>{
+    render();
+    window.addEventListener('hashchange',render);
+    // 即使手機背景分頁暫停計時，回到畫面仍會立即檢查。
+    window.addEventListener('focus',render);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)render()});
+    setInterval(render,1000);
+  });
+})();
 </script>
-
+</head>
+<body>
+<main class="card">
+  <div class="flower" aria-hidden="true">🌿</div>
+  <h1>Blooming</h1>
+  <p class="date">October 18, 2026</p>
+  <section id="countdown">
+    <div class="divider"></div>
+    <p class="small">距離綻放還有</p>
+    <div id="days" class="days" aria-live="off">— 天</div>
+    <div id="clock" class="clock">— 小時 — 分 — 秒</div>
+    <p class="hint">謝謝您收到我們的邀請。<br>請將這份 Blooming<br>留到婚禮當天再開啟。</p>
+    <p class="quote">Every flower blooms at its own time.</p>
+  </section>
+  <section id="blessing" hidden>
+    <div class="divider"></div>
+    <div id="guestContent" hidden>
+      <p class="small">這一份 Blooming，獻給</p>
+      <h2 class="guest-name" id="guestName"></h2>
+      <p class="message" id="guestMessage"></p>
+      <div class="signature">謝謝你，成為我們生命裡的一部分。<br>Melvin & Irene · 2026.10.18</div>
+    </div>
+    <div id="missing" hidden>
+      <h2 class="guest-name">還找不到這份專屬祝福</h2>
+      <p class="small">請使用座位上 Mission Card 的 QR Code 重新開啟，<br>或向新人確認編號。</p>
+    </div>
+    <p class="quote">Every flower blooms at its own time.</p>
+  </section>
+</main>
 </body>
-
 </html>
