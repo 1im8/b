@@ -34,9 +34,9 @@
   .card{position:relative;overflow:hidden;isolation:isolate}
   .card > :not(.daisy-rain){position:relative;z-index:1}
   .daisy-rain{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;border-radius:inherit}
-  .daisy{position:absolute;left:var(--left);top:-36px;width:var(--size);height:var(--size);opacity:0;color:#e8bc56}
+  .daisy{position:absolute;left:var(--left);top:-42px;width:calc(var(--size) * 1.2);height:calc(var(--size) * 1.2);opacity:0;color:#e8bc56}
   .daisy svg{width:100%;height:100%;display:block;filter:drop-shadow(0 1px 1px rgba(60,60,45,.08))}
-  .card.revealed .daisy{animation:daisyFall var(--duration) var(--delay) ease-in-out both}
+  .card.revealed .daisy{animation:daisyFall calc(var(--duration) * 1.32) var(--delay) ease-in-out both}
   @keyframes daisyFall{
     0%{opacity:0;transform:translate3d(0,-24px,0) rotate(-35deg)}
     16%{opacity:var(--opacity)}
@@ -45,12 +45,39 @@
   }
   .sign-image{display:block;width:min(295px,82%);height:auto;margin:14px auto 0;object-fit:contain}
   .sign-date{font-size:13px;color:#8a7d7d;letter-spacing:1px;margin-top:7px}
-  .card.revealed #guestName{animation:blessingEnter .8s .55s both}
-  .card.revealed #guestMessage{animation:blessingEnter 1s 1.15s both}
-  .card.revealed #guestContent .signature{animation:blessingEnter .9s 1.9s both}
+  .card.revealed #guestName{animation:blessingEnter .8s 2.35s both}
+  .card.revealed #guestMessage{animation:blessingEnter 1s 2.85s both}
+  .card.revealed #guestContent .signature{animation:blessingEnter .9s 3.55s both}
   @keyframes blessingEnter{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
   @media(max-width:600px){.sign-image{width:min(260px,84%)} }
   @media(prefers-reduced-motion:reduce){.card.revealed .daisy,.card.revealed #guestName,.card.revealed #guestMessage,.card.revealed #guestContent .signature{animation:none!important}.daisy{display:none}}
+
+  .envelope-wrap{position:relative;height:188px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center}
+  .envelope-scene{position:relative;width:min(290px,76vw);height:176px;opacity:0;transform:translateY(12px) scale(.98);pointer-events:none}
+  .env-back,.env-front,.env-flap,.env-letter{position:absolute;left:50%;transform:translateX(-50%);border-radius:8px}
+  .env-back{bottom:18px;width:220px;height:120px;background:#f7f1e7;box-shadow:0 10px 24px rgba(57,53,43,.08)}
+  .env-letter{bottom:34px;width:182px;height:102px;background:#fffdf9;border:1px solid #ece3d7;box-shadow:0 6px 12px rgba(50,42,30,.05);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#6d7a68}
+  .env-letter .mini-sign{width:124px;max-width:76%;height:auto;opacity:.95;margin-top:6px}
+  .env-letter .mini-text{font-size:14px;letter-spacing:1.2px;color:#887d80}
+  .env-front{bottom:18px;width:220px;height:120px;background:linear-gradient(180deg,#efe7da,#eadfcd);clip-path:polygon(0 0,100% 0,100% 100%,0 100%,0 0);overflow:hidden}
+  .env-front:before,.env-front:after{content:'';position:absolute;top:0;width:50%;height:100%;background:rgba(255,255,255,.25)}
+  .env-front:before{left:0;clip-path:polygon(0 0,100% 50%,0 100%)}
+  .env-front:after{right:0;clip-path:polygon(100% 0,0 50%,100% 100%)}
+  .env-front .heart{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);font-size:18px;color:#b05c6d;opacity:.88}
+  .env-flap{bottom:78px;width:220px;height:76px;background:linear-gradient(180deg,#f8efe4,#efe4d2);clip-path:polygon(0 100%,50% 0,100% 100%);transform:translateX(-50%) rotateX(0deg);transform-origin:50% 100%;box-shadow:0 2px 8px rgba(50,42,30,.05)}
+  .card.revealed .envelope-scene{animation:envAppear .3s .08s both}
+  .card.revealed .env-flap{animation:flapOpen .75s .45s ease-out forwards}
+  .card.revealed .env-letter{animation:letterRise 1.15s 1.05s ease-out forwards}
+  .card.revealed .envelope-scene{animation:envAppear .3s .08s both, envFade .45s 2.1s ease-out forwards}
+  .card.revealed #guestContent{animation:contentFade .45s 2.0s both}
+  @keyframes envAppear{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+  @keyframes flapOpen{0%{transform:translateX(-50%) rotateX(0deg)}100%{transform:translateX(-50%) rotateX(180deg)}}
+  @keyframes letterRise{0%{transform:translateX(-50%) translateY(0)}100%{transform:translateX(-50%) translateY(-54px)}}
+  @keyframes envFade{to{opacity:0;transform:translateY(-8px) scale(.98)}}
+  @keyframes contentFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:600px){.envelope-wrap{height:170px}.envelope-scene{width:min(260px,80vw);height:164px}.env-back,.env-front{width:200px;height:112px}.env-flap{width:200px;height:70px;bottom:74px}.env-letter{width:166px;height:94px}.env-letter .mini-sign{width:114px}}
+  @media(prefers-reduced-motion:reduce){.envelope-scene,.env-flap,.env-letter,#guestContent{animation:none!important}.envelope-wrap{display:none}}
+
 </style>
 <script src="./guests.js" defer></script>
 <script defer>
@@ -83,11 +110,12 @@
     const guest = window.BLOOM_GUESTS && window.BLOOM_GUESTS[id];
     $('guestContent').hidden=!guest;
     $('missing').hidden=!!guest;
-    if(!guest){document.querySelector('.card').classList.remove('revealed');lastShown=null;}
+    if(!guest){document.querySelector('.card').classList.remove('revealed');lastShown=null; $('guestContent').hidden=true;}
     if (guest) {
       // textContent，不把祝福當 HTML 執行，避免符號破版。
       $('guestName').textContent=guest.name;
       $('guestMessage').textContent=guest.message;
+      $('guestContent').hidden=false;
       if(lastShown !== id){
         lastShown=id;
         const card=document.querySelector('.card');
@@ -126,7 +154,15 @@
   </section>
   <section id="blessing" hidden>
     <div class="divider"></div>
-    <div id="guestContent" hidden>
+    <div class="envelope-wrap" aria-hidden="true">
+        <div class="envelope-scene" id="envelopeStage">
+          <div class="env-back"></div>
+          <div class="env-letter"><div class="mini-text">A Blooming for You</div><img class="mini-sign" src="./signature.png" alt=""></div>
+          <div class="env-flap"></div>
+          <div class="env-front"><div class="heart">♥</div></div>
+        </div>
+      </div>
+      <div id="guestContent" hidden>
       <p class="small">這一份 Blooming，獻給</p>
       <h2 class="guest-name" id="guestName"></h2>
       <p class="message" id="guestMessage"></p>
