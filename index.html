@@ -25,10 +25,30 @@
   .message{font-size:19px;line-height:2.1;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;color:#4f5350;margin:0}
   .signature{margin-top:38px;color:#8a7d7d;font-size:16px;line-height:1.9}
   .note{margin-top:25px;color:#8a7d7d;font-size:13px}
+  /* 花朵生長、祝福展開與少量花瓣，結束後維持靜態以便閱讀 */
+  .card{position:relative;overflow:hidden;isolation:isolate}
+  .card > *:not(.petals){position:relative;z-index:1}
+  .petals{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .petal{position:absolute;top:-35px;font-size:18px;color:#d2adad;opacity:0;user-select:none}
+  .petal:nth-child(1){left:11%;--drift:35px;animation-delay:.1s}
+  .petal:nth-child(2){left:79%;--drift:-38px;animation-delay:.85s;color:#d8ba8f}
+  .petal:nth-child(3){left:54%;--drift:24px;animation-delay:1.4s;color:#b9c9a7}
+  .petal:nth-child(4){left:90%;--drift:-25px;animation-delay:2s;color:#e3c5c5}
+  .card.revealed .flower{animation:growLeaf 1.35s cubic-bezier(.2,.75,.3,1.25) both}
+  .card.revealed #blessing .divider{animation:softAppear .8s .48s both}
+  .card.revealed #guestContent .small{animation:softAppear .85s .7s both}
+  .card.revealed #guestName{animation:softAppear .85s 1.05s both}
+  .card.revealed #guestMessage{animation:softAppear 1s 1.65s both}
+  .card.revealed #guestContent .signature{animation:softAppear .95s 2.05s both}
+  .card.revealed #blessing .quote{animation:softAppear .9s 2.3s both}
+  .card.revealed .petal{animation:fallPetal 4.5s ease-in forwards}
+  @keyframes growLeaf{0%{opacity:.1;transform:scale(.32) rotate(-16deg)}70%{opacity:1;transform:scale(1.12) rotate(5deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+  @keyframes softAppear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fallPetal{0%{opacity:0;transform:translate(0,-10px) rotate(-15deg)}18%{opacity:.75}82%{opacity:.65}100%{opacity:0;transform:translate(var(--drift),470px) rotate(155deg)}}
   [hidden]{display:none!important}
   @keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
   @media(max-width:600px){body{padding:15px 12px;align-items:flex-start}.card{margin:10px 0;padding:55px 26px 46px;border-radius:26px;min-height:calc(100dvh - 50px)}h1{font-size:36px}.date{font-size:16px;letter-spacing:2.8px}.small,.hint{font-size:16px}.days{font-size:50px}.clock{font-size:16px}.guest-name{font-size:23px}.message{font-size:17px;line-height:2}.flower{font-size:45px}.quote{margin-top:38px;font-size:15px}}
-  @media(prefers-reduced-motion:reduce){.card{animation:none}}
+  @media(prefers-reduced-motion:reduce){.card,.card.revealed .flower,.card.revealed #blessing .divider,.card.revealed #guestContent .small,.card.revealed #guestName,.card.revealed #guestMessage,.card.revealed #guestContent .signature,.card.revealed #blessing .quote,.card.revealed .petal{animation:none!important}.petal{display:none}}
 </style>
 <script src="./guests.js" defer></script>
 <script defer>
@@ -40,9 +60,11 @@
   const preview = qs.get('preview') === '1';
   const $ = id => document.getElementById(id);
   const format2 = n => String(n).padStart(2, '0');
+  let shownGuestId = null;
   function render() {
     const secondsLeft = Math.max(0, Math.ceil((UNLOCK_TIME-Date.now())/1000));
     const unlocked = preview || secondsLeft === 0;
+    if (!unlocked) { document.querySelector('.card').classList.remove('revealed'); shownGuestId = null; }
     $('countdown').hidden = unlocked;
     $('blessing').hidden = !unlocked;
     if (!unlocked) {
@@ -59,10 +81,19 @@
     const guest = window.BLOOM_GUESTS && window.BLOOM_GUESTS[id];
     $('guestContent').hidden=!guest;
     $('missing').hidden=!!guest;
+    if (!guest) { document.querySelector('.card').classList.remove('revealed'); shownGuestId=null; }
     if (guest) {
       // textContent，不把祝福當 HTML 執行，避免符號破版。
       $('guestName').textContent=guest.name;
       $('guestMessage').textContent=guest.message;
+      // 只有首次揭曉或切換賓客編號才重播，不會每秒重新播放。
+      if (shownGuestId !== id) {
+        shownGuestId = id;
+        const card = document.querySelector('.card');
+        card.classList.remove('revealed');
+        void card.offsetWidth;
+        card.classList.add('revealed');
+      }
     }
   }
   window.addEventListener('DOMContentLoaded',()=>{
@@ -78,6 +109,7 @@
 </head>
 <body>
 <main class="card">
+  <div class="petals" aria-hidden="true"><span class="petal">✿</span><span class="petal">❀</span><span class="petal">✿</span><span class="petal">❀</span></div>
   <div class="flower" aria-hidden="true">🌿</div>
   <h1>Blooming</h1>
   <p class="date">October 18, 2026</p>
@@ -86,7 +118,7 @@
     <p class="small">距離綻放還有</p>
     <div id="days" class="days" aria-live="off">— 天</div>
     <div id="clock" class="clock">— 小時 — 分 — 秒</div>
-    <p class="hint">謝謝您收到我們的邀請。<br>請將這份 Blooming<br>留到婚禮當天再開啟。</p>
+    <p class="hint">婚禮尾聲，<br>這份專屬於您的祝福<br>即將綻放。</p>
     <p class="quote">Every flower blooms at its own time.</p>
   </section>
   <section id="blessing" hidden>
