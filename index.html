@@ -56,7 +56,7 @@ body{background:radial-gradient(circle at 8% 5%,#ebe8dc,transparent 40%),radial-
 .card{border:1px solid #e8e2d6;box-shadow:0 18px 50px rgba(55,56,34,.085);padding-top:73px;background:linear-gradient(180deg,#fffdf9 0%,#fffefa 100%)}
 .card:before{content:"";height:6px;position:absolute;top:0;left:21%;right:21%;background:repeating-linear-gradient(90deg,#747d56 0 5px,transparent 5px 10px);opacity:.75;z-index:1}
 .card:after{content:"";position:absolute;inset:13px;border:1px solid rgba(179,160,132,.24);border-radius:23px;pointer-events:none;z-index:0}
-h1{font-family:Georgia,'Times New Roman',serif;color:#455b42;letter-spacing:.025em}
+h1{font-family:'Z003','URW Chancery L','Apple Chancery','Snell Roundhand','Segoe Script',cursive;color:#5c6143;letter-spacing:.03em;font-size:66px;line-height:1;font-weight:500;text-transform:uppercase}
 .flower{font-size:44px;margin-bottom:13px}
 .date{font-size:15px;letter-spacing:3.1px;color:#867b6f}
 .divider{background:linear-gradient(90deg,transparent,#bea989,transparent);width:75px}
@@ -66,22 +66,23 @@ h1{font-family:Georgia,'Times New Roman',serif;color:#455b42;letter-spacing:.025
 .signature{margin-top:35px;color:#888175}
 .signature-image{display:block;width:min(310px,82%);height:auto;margin:15px auto 4px;object-fit:contain}
 .signature-date{font-family:Georgia,serif;letter-spacing:2px;font-size:12px;color:#8b8172}
-.seal{display:flex;width:46px;height:46px;margin:27px auto 0;border-radius:50%;background:#7d3548;color:#f4e8d7;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:21px;font-style:italic;box-shadow:0 2px 7px rgba(73,26,31,.18);border:3px double #d8af9c;transform:rotate(-8deg)}
-.corner-bloom{position:absolute!important;z-index:0!important;width:94px;height:94px;opacity:.50;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(45,45,30,.04))}
-.corner-left{top:33px;left:23px;transform:rotate(-24deg)}
-.corner-right{right:13px;bottom:44px;transform:rotate(149deg)}
+.mi-icon{display:block;width:min(132px,40%);height:auto;margin:22px auto 0;opacity:.92}
+.corner-bloom{position:absolute!important;z-index:0!important;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(45,45,30,.04))}
+.corner-left{top:16px;left:14px;width:min(142px,24vw);height:auto;opacity:.70}
+.corner-right{right:10px;bottom:24px;width:min(118px,19vw);height:auto;opacity:.68}
 /* Garden daisies gently fall once when the personal letter is revealed */
 .daisy-field{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none}
-.daisy-drop{position:absolute;top:-55px;left:var(--x);width:var(--size);height:var(--size);opacity:0;transform:translateY(-30px)}
-.daisy-drop svg{display:block;width:100%;height:100%;filter:drop-shadow(0 2px 1px rgba(87,84,41,.11))}
+.daisy-drop{position:absolute;top:-55px;left:var(--x);width:var(--size);height:var(--size);opacity:0;transform:translateY(-30px);font-size:var(--size);line-height:1;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 2px 1px rgba(87,84,41,.11));color:#d9cf9a}
 .card.revealed .daisy-drop{animation:daisyFall var(--dur) var(--delay) ease-in-out forwards}
 @keyframes daisyFall{0%{opacity:0;transform:translate3d(0,-35px,0) rotate(-24deg)}12%{opacity:var(--o)}80%{opacity:calc(var(--o) * .65)}100%{opacity:0;transform:translate3d(var(--drift),min(640px,90vh),0) rotate(var(--rot))}}
+
+.daisy-drop:nth-child(3n){color:#b7c7e8}.daisy-drop:nth-child(3n+1){color:#efe4a8}.daisy-drop:nth-child(4n){color:#f1df7d}.daisy-drop:nth-child(5n){color:#d8d1b1}
 /* Marking: decorative flowers are foreground but brief and translucent. */
 .card.revealed .flower{animation:growLeaf 1.4s cubic-bezier(.2,.75,.3,1.15) both}
 .card.revealed .signature-image{animation:softAppear 1.05s 2.2s both}
 .card.revealed .seal{animation:softAppear .9s 2.5s both}
 .card.revealed .petal{display:none}
-@media(max-width:600px){.card{padding:57px 27px 48px}.card:after{inset:9px;border-radius:20px}.corner-bloom{width:65px;height:65px;opacity:.36}.corner-left{left:8px;top:29px}.corner-right{right:3px;bottom:34px}.signature-image{width:min(260px,88%)}.message{font-size:17px}}
+@media(max-width:600px){.card{padding:57px 27px 48px}.card:after{inset:9px;border-radius:20px}h1{font-size:54px}.corner-left{left:4px;top:18px;width:92px;opacity:.64}.corner-right{right:0px;bottom:18px;width:82px;opacity:.62}.signature-image{width:min(260px,88%)}.mi-icon{width:min(112px,44%)}.message{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.card.revealed .daisy-drop,.card.revealed .signature-image,.card.revealed .seal{animation:none!important}.daisy-drop{display:none!important}}
 
 </style>
@@ -143,14 +144,13 @@ h1{font-family:Georgia,'Times New Roman',serif;color:#455b42;letter-spacing:.025
 </script>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="daisy" viewBox="0 0 100 100"><g fill="#fffdf0" stroke="#e7dfc4" stroke-width="1.1"><ellipse cx="50" cy="29" rx="12.5" ry="24" transform="rotate(0 50 50)"/><ellipse cx="50" cy="29" rx="12.5" ry="24" transform="rotate(45 50 50)"/><ellipse cx="50" cy="29" rx="12.5" ry="24" transform="rotate(90 50 50)"/><ellipse cx="50" cy="29" rx="12.5" ry="24" transform="rotate(135 50 50)"/><ellipse cx="50" cy="29" rx="12.5" ry="24" transform="rotate(180 50 50)"/><ellipse cx="50" cy="29" rx="12.5" ry="24" transform="rotate(225 50 50)"/><ellipse cx="50" cy="29" rx="12.5" ry="24" transform="rotate(270 50 50)"/><ellipse cx="50" cy="29" rx="12.5" ry="24" transform="rotate(315 50 50)"/></g><circle cx="50" cy="50" r="14" fill="#e1b650"/><circle cx="46" cy="45" r="4" fill="#f1d782" opacity=".8"/></symbol></defs></svg>
 <main class="card">
-  <svg class="corner-bloom corner-left" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 96 Q28 55 75 10 M20 79 Q5 59 12 45 M39 51 Q55 59 75 49 M51 39 Q40 19 47 8" stroke="#829266" stroke-width="2.6" fill="none"/><path d="M20 72Q5 65 12 51Q28 55 20 72M45 49Q63 40 74 49Q60 59 45 49M49 36Q37 20 47 10Q59 24 49 36" fill="#9dad81"/><use href="#daisy" x="42" y="-2" width="48" height="48"/><use href="#daisy" x="-5" y="28" width="42" height="42"/></svg>
-  <svg class="corner-bloom corner-right" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 96 Q28 55 75 10 M20 79 Q5 59 12 45 M39 51 Q55 59 75 49 M51 39 Q40 19 47 8" stroke="#829266" stroke-width="2.6" fill="none"/><path d="M20 72Q5 65 12 51Q28 55 20 72M45 49Q63 40 74 49Q60 59 45 49M49 36Q37 20 47 10Q59 24 49 36" fill="#9dad81"/><use href="#daisy" x="42" y="-2" width="48" height="48"/><use href="#daisy" x="-5" y="28" width="42" height="42"/></svg>
-  <div class="daisy-field" aria-hidden="true"><span class="daisy-drop" style="--x:46%;--size:24px;--delay:0.12s;--dur:4.21s;--drift:33px;--rot:297deg;--o:0.6"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:19%;--size:15px;--delay:0.34s;--dur:4.89s;--drift:55px;--rot:230deg;--o:0.46"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:86%;--size:15px;--delay:0.42s;--dur:4.98s;--drift:93px;--rot:208deg;--o:0.45"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:16%;--size:20px;--delay:0.64s;--dur:3.92s;--drift:59px;--rot:231deg;--o:0.46"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:67%;--size:23px;--delay:0.83s;--dur:5.18s;--drift:-62px;--rot:209deg;--o:0.44"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:64%;--size:22px;--delay:0.95s;--dur:3.99s;--drift:-22px;--rot:208deg;--o:0.7"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:17%;--size:16px;--delay:1.25s;--dur:3.82s;--drift:-32px;--rot:273deg;--o:0.69"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:86%;--size:20px;--delay:1.66s;--dur:4.46s;--drift:-6px;--rot:251deg;--o:0.7"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:92%;--size:19px;--delay:1.77s;--dur:4.62s;--drift:36px;--rot:235deg;--o:0.51"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:67%;--size:16px;--delay:1.72s;--dur:4.38s;--drift:-95px;--rot:184deg;--o:0.52"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:23%;--size:21px;--delay:1.94s;--dur:5.15s;--drift:-83px;--rot:254deg;--o:0.35"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:58%;--size:22px;--delay:2.34s;--dur:3.96s;--drift:-33px;--rot:185deg;--o:0.4"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:33%;--size:15px;--delay:2.37s;--dur:4.08s;--drift:12px;--rot:306deg;--o:0.58"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:75%;--size:18px;--delay:2.58s;--dur:4.34s;--drift:-90px;--rot:260deg;--o:0.72"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:19%;--size:18px;--delay:2.82s;--dur:4.83s;--drift:-67px;--rot:254deg;--o:0.37"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:89%;--size:25px;--delay:3.19s;--dur:4.47s;--drift:22px;--rot:182deg;--o:0.54"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:52%;--size:15px;--delay:3.39s;--dur:4.32s;--drift:69px;--rot:147deg;--o:0.66"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span><span class="daisy-drop" style="--x:78%;--size:21px;--delay:3.28s;--dur:5.2s;--drift:-44px;--rot:297deg;--o:0.47"><svg viewBox="0 0 100 100"><use href="#daisy"/></svg></span></div>
+  <img class="corner-bloom corner-left" src="./floral_top.png" alt="">
+  <img class="corner-bloom corner-right" src="./floral_bottom.png" alt="">
+  <div class="daisy-field" aria-hidden="true"><span class="daisy-drop" style="--x:10%;--size:18px;--delay:0.2s;--dur:4.2s;--drift:24px;--rot:240deg;--o:0.45">❀</span><span class="daisy-drop" style="--x:20%;--size:15px;--delay:0.5s;--dur:4.8s;--drift:-30px;--rot:200deg;--o:0.4">✿</span><span class="daisy-drop" style="--x:32%;--size:18px;--delay:0.8s;--dur:4.0s;--drift:40px;--rot:260deg;--o:0.5">❀</span><span class="daisy-drop" style="--x:47%;--size:16px;--delay:1.1s;--dur:4.5s;--drift:-24px;--rot:300deg;--o:0.45">✿</span><span class="daisy-drop" style="--x:58%;--size:22px;--delay:1.5s;--dur:5.0s;--drift:35px;--rot:210deg;--o:0.55">❀</span><span class="daisy-drop" style="--x:72%;--size:16px;--delay:1.9s;--dur:4.1s;--drift:-18px;--rot:280deg;--o:0.45">✿</span><span class="daisy-drop" style="--x:82%;--size:19px;--delay:2.3s;--dur:4.6s;--drift:30px;--rot:240deg;--o:0.48">❀</span><span class="daisy-drop" style="--x:90%;--size:16px;--delay:2.7s;--dur:4.9s;--drift:-26px;--rot:310deg;--o:0.4">✿</span><span class="daisy-drop" style="--x:26%;--size:14px;--delay:3.0s;--dur:4.3s;--drift:22px;--rot:230deg;--o:0.38">❀</span><span class="daisy-drop" style="--x:64%;--size:15px;--delay:3.4s;--dur:4.4s;--drift:-16px;--rot:205deg;--o:0.38">✿</span></div>
 
-  <div class="flower" aria-hidden="true">🌿</div>
-  <h1>Blooming</h1>
+  <div class="flower" aria-hidden="true">✿</div>
+  <h1>BLOOMING</h1>
   <p class="date">October 18, 2026</p>
   <section id="countdown">
     <div class="divider"></div>
@@ -168,7 +168,7 @@ h1{font-family:Georgia,'Times New Roman',serif;color:#455b42;letter-spacing:.025
       <h2 class="guest-name" id="guestName"></h2>
       <p class="message" id="guestMessage"></p>
       <div class="signature">謝謝你，成為我們生命裡的一部分。<img src="./signature.png" alt="Melvin &amp; Irene" class="signature-image"><span class="signature-date">2026.10.18</span></div>
-      <div class="seal" aria-hidden="true">M·I</div>
+      <img src="./mi_icon.png" alt="M I monogram" class="mi-icon">
     </div>
     <div id="missing" hidden>
       <h2 class="guest-name">還找不到這份專屬祝福</h2>
