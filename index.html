@@ -25,66 +25,32 @@
   .message{font-size:19px;line-height:2.1;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;color:#4f5350;margin:0}
   .signature{margin-top:38px;color:#8a7d7d;font-size:16px;line-height:1.9}
   .note{margin-top:25px;color:#8a7d7d;font-size:13px}
-  /* 花朵生長、祝福展開與少量花瓣，結束後維持靜態以便閱讀 */
-  .card{position:relative;overflow:hidden;isolation:isolate}
-  .card > *:not(.petals){position:relative;z-index:1}
-  .petals{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-  .petal{position:absolute;top:-35px;font-size:18px;color:#d2adad;opacity:0;user-select:none}
-  .petal:nth-child(1){left:11%;--drift:35px;animation-delay:.1s}
-  .petal:nth-child(2){left:79%;--drift:-38px;animation-delay:.85s;color:#d8ba8f}
-  .petal:nth-child(3){left:54%;--drift:24px;animation-delay:1.4s;color:#b9c9a7}
-  .petal:nth-child(4){left:90%;--drift:-25px;animation-delay:2s;color:#e3c5c5}
-  .card.revealed .flower{animation:growLeaf 1.35s cubic-bezier(.2,.75,.3,1.25) both}
-  .card.revealed #blessing .divider{animation:softAppear .8s .48s both}
-  .card.revealed #guestContent .small{animation:softAppear .85s .7s both}
-  .card.revealed #guestName{animation:softAppear .85s 1.05s both}
-  .card.revealed #guestMessage{animation:softAppear 1s 1.65s both}
-  .card.revealed #guestContent .signature{animation:softAppear .95s 2.05s both}
-  .card.revealed #blessing .quote{animation:softAppear .9s 2.3s both}
-  .card.revealed .petal{animation:fallPetal 4.5s ease-in forwards}
-  @keyframes growLeaf{0%{opacity:.1;transform:scale(.32) rotate(-16deg)}70%{opacity:1;transform:scale(1.12) rotate(5deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
-  @keyframes softAppear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-  @keyframes fallPetal{0%{opacity:0;transform:translate(0,-10px) rotate(-15deg)}18%{opacity:.75}82%{opacity:.65}100%{opacity:0;transform:translate(var(--drift),470px) rotate(155deg)}}
   [hidden]{display:none!important}
   @keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
   @media(max-width:600px){body{padding:15px 12px;align-items:flex-start}.card{margin:10px 0;padding:55px 26px 46px;border-radius:26px;min-height:calc(100dvh - 50px)}h1{font-size:36px}.date{font-size:16px;letter-spacing:2.8px}.small,.hint{font-size:16px}.days{font-size:50px}.clock{font-size:16px}.guest-name{font-size:23px}.message{font-size:17px;line-height:2}.flower{font-size:45px}.quote{margin-top:38px;font-size:15px}}
-  @media(prefers-reduced-motion:reduce){.card,.card.revealed .flower,.card.revealed #blessing .divider,.card.revealed #guestContent .small,.card.revealed #guestName,.card.revealed #guestMessage,.card.revealed #guestContent .signature,.card.revealed #blessing .quote,.card.revealed .petal{animation:none!important}.petal{display:none}}
+  @media(prefers-reduced-motion:reduce){.card{animation:none}}
 
-/* 2026 Blooming invitation theme: olive envelope, cream stationery, wine seal */
-:root{--ink:#44573d;--muted:#7e796f;--paper:#fffdf9;--bg:#f3f0e9;--olive:#626d45;--burgundy:#782f43;--gold:#bb9b63}
-body{background:radial-gradient(circle at 8% 5%,#ebe8dc,transparent 40%),radial-gradient(circle at 95% 92%,#e8e6db,transparent 35%),var(--bg)}
-.card{border:1px solid #e8e2d6;box-shadow:0 18px 50px rgba(55,56,34,.085);padding-top:73px;background:linear-gradient(180deg,#fffdf9 0%,#fffefa 100%)}
-.card:before{content:"";height:6px;position:absolute;top:0;left:21%;right:21%;background:repeating-linear-gradient(90deg,#747d56 0 5px,transparent 5px 10px);opacity:.75;z-index:1}
-.card:after{content:"";position:absolute;inset:13px;border:1px solid rgba(179,160,132,.24);border-radius:23px;pointer-events:none;z-index:0}
-h1{font-family:'Z003','URW Chancery L','Apple Chancery','Snell Roundhand','Segoe Script',cursive;color:#5c6143;letter-spacing:.03em;font-size:66px;line-height:1;font-weight:500;text-transform:uppercase}
-.flower{font-size:44px;margin-bottom:13px}
-.date{font-size:15px;letter-spacing:3.1px;color:#867b6f}
-.divider{background:linear-gradient(90deg,transparent,#bea989,transparent);width:75px}
-.guest-name{color:#475941}
-.message{font-size:18px;line-height:2.05}
-.quote{font-family:Georgia,serif;font-style:italic;color:#827969}
-.signature{margin-top:35px;color:#888175}
-.signature-image{display:block;width:min(310px,82%);height:auto;margin:15px auto 4px;object-fit:contain}
-.signature-date{font-family:Georgia,serif;letter-spacing:2px;font-size:12px;color:#8b8172}
-.mi-icon{display:block;width:min(132px,40%);height:auto;margin:22px auto 0;opacity:.92}
-.corner-bloom{position:absolute!important;z-index:0!important;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(45,45,30,.04))}
-.corner-left{top:16px;left:14px;width:min(142px,24vw);height:auto;opacity:.70}
-.corner-right{right:10px;bottom:24px;width:min(118px,19vw);height:auto;opacity:.68}
-/* Garden daisies gently fall once when the personal letter is revealed */
-.daisy-field{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none}
-.daisy-drop{position:absolute;top:-55px;left:var(--x);width:var(--size);height:var(--size);opacity:0;transform:translateY(-30px);font-size:var(--size);line-height:1;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 2px 1px rgba(87,84,41,.11));color:#d9cf9a}
-.card.revealed .daisy-drop{animation:daisyFall var(--dur) var(--delay) ease-in-out forwards}
-@keyframes daisyFall{0%{opacity:0;transform:translate3d(0,-35px,0) rotate(-24deg)}12%{opacity:var(--o)}80%{opacity:calc(var(--o) * .65)}100%{opacity:0;transform:translate3d(var(--drift),min(640px,90vh),0) rotate(var(--rot))}}
-
-.daisy-drop:nth-child(3n){color:#b7c7e8}.daisy-drop:nth-child(3n+1){color:#efe4a8}.daisy-drop:nth-child(4n){color:#f1df7d}.daisy-drop:nth-child(5n){color:#d8d1b1}
-/* Marking: decorative flowers are foreground but brief and translucent. */
-.card.revealed .flower{animation:growLeaf 1.4s cubic-bezier(.2,.75,.3,1.15) both}
-.card.revealed .signature-image{animation:softAppear 1.05s 2.2s both}
-.card.revealed .seal{animation:softAppear .9s 2.5s both}
-.card.revealed .petal{display:none}
-@media(max-width:600px){.card{padding:57px 27px 48px}.card:after{inset:9px;border-radius:20px}h1{font-size:54px}.corner-left{left:4px;top:18px;width:92px;opacity:.64}.corner-right{right:0px;bottom:18px;width:82px;opacity:.62}.signature-image{width:min(260px,88%)}.mi-icon{width:min(112px,44%)}.message{font-size:17px}}
-@media(prefers-reduced-motion:reduce){.card.revealed .daisy-drop,.card.revealed .signature-image,.card.revealed .seal{animation:none!important}.daisy-drop{display:none!important}}
-
+  /* 保持原始白底版；只新增簽名及小雛菊飄落 */
+  .card{position:relative;overflow:hidden;isolation:isolate}
+  .card > :not(.daisy-rain){position:relative;z-index:1}
+  .daisy-rain{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;border-radius:inherit}
+  .daisy{position:absolute;left:var(--left);top:-36px;width:var(--size);height:var(--size);opacity:0;color:#e8bc56}
+  .daisy svg{width:100%;height:100%;display:block;filter:drop-shadow(0 1px 1px rgba(60,60,45,.08))}
+  .card.revealed .daisy{animation:daisyFall var(--duration) var(--delay) ease-in-out both}
+  @keyframes daisyFall{
+    0%{opacity:0;transform:translate3d(0,-24px,0) rotate(-35deg)}
+    16%{opacity:var(--opacity)}
+    72%{opacity:var(--opacity)}
+    100%{opacity:0;transform:translate3d(var(--drift),min(720px,100vh),0) rotate(var(--spin))}
+  }
+  .sign-image{display:block;width:min(295px,82%);height:auto;margin:14px auto 0;object-fit:contain}
+  .sign-date{font-size:13px;color:#8a7d7d;letter-spacing:1px;margin-top:7px}
+  .card.revealed #guestName{animation:blessingEnter .8s .55s both}
+  .card.revealed #guestMessage{animation:blessingEnter 1s 1.15s both}
+  .card.revealed #guestContent .signature{animation:blessingEnter .9s 1.9s both}
+  @keyframes blessingEnter{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:600px){.sign-image{width:min(260px,84%)} }
+  @media(prefers-reduced-motion:reduce){.card.revealed .daisy,.card.revealed #guestName,.card.revealed #guestMessage,.card.revealed #guestContent .signature{animation:none!important}.daisy{display:none}}
 </style>
 <script src="./guests.js" defer></script>
 <script defer>
@@ -96,11 +62,11 @@ h1{font-family:'Z003','URW Chancery L','Apple Chancery','Snell Roundhand','Segoe
   const preview = qs.get('preview') === '1';
   const $ = id => document.getElementById(id);
   const format2 = n => String(n).padStart(2, '0');
-  let shownGuestId = null;
+  let lastShown = null;
   function render() {
     const secondsLeft = Math.max(0, Math.ceil((UNLOCK_TIME-Date.now())/1000));
     const unlocked = preview || secondsLeft === 0;
-    if (!unlocked) { document.querySelector('.card').classList.remove('revealed'); shownGuestId = null; }
+    if(!unlocked){document.querySelector('.card').classList.remove('revealed');lastShown=null;}
     $('countdown').hidden = unlocked;
     $('blessing').hidden = !unlocked;
     if (!unlocked) {
@@ -117,15 +83,14 @@ h1{font-family:'Z003','URW Chancery L','Apple Chancery','Snell Roundhand','Segoe
     const guest = window.BLOOM_GUESTS && window.BLOOM_GUESTS[id];
     $('guestContent').hidden=!guest;
     $('missing').hidden=!!guest;
-    if (!guest) { document.querySelector('.card').classList.remove('revealed'); shownGuestId=null; }
+    if(!guest){document.querySelector('.card').classList.remove('revealed');lastShown=null;}
     if (guest) {
       // textContent，不把祝福當 HTML 執行，避免符號破版。
       $('guestName').textContent=guest.name;
       $('guestMessage').textContent=guest.message;
-      // 只有首次揭曉或切換賓客編號才重播，不會每秒重新播放。
-      if (shownGuestId !== id) {
-        shownGuestId = id;
-        const card = document.querySelector('.card');
+      if(lastShown !== id){
+        lastShown=id;
+        const card=document.querySelector('.card');
         card.classList.remove('revealed');
         void card.offsetWidth;
         card.classList.add('revealed');
@@ -144,13 +109,11 @@ h1{font-family:'Z003','URW Chancery L','Apple Chancery','Snell Roundhand','Segoe
 </script>
 </head>
 <body>
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false"><defs><symbol id="daisySymbol" viewBox="0 0 100 100"><g fill="#fffdf3" stroke="#e8e4d7" stroke-width="1"><ellipse cx="50" cy="25" rx="10.2" ry="20.5"/><ellipse cx="50" cy="25" rx="10.2" ry="20.5" transform="rotate(45 50 50)"/><ellipse cx="50" cy="25" rx="10.2" ry="20.5" transform="rotate(90 50 50)"/><ellipse cx="50" cy="25" rx="10.2" ry="20.5" transform="rotate(135 50 50)"/><ellipse cx="50" cy="25" rx="10.2" ry="20.5" transform="rotate(180 50 50)"/><ellipse cx="50" cy="25" rx="10.2" ry="20.5" transform="rotate(225 50 50)"/><ellipse cx="50" cy="25" rx="10.2" ry="20.5" transform="rotate(270 50 50)"/><ellipse cx="50" cy="25" rx="10.2" ry="20.5" transform="rotate(315 50 50)"/></g><circle cx="50" cy="50" r="12" fill="#e4b953"/><circle cx="46" cy="46" r="3.4" fill="#f5d988"/></symbol></defs></svg>
 <main class="card">
-  <img class="corner-bloom corner-left" src="./floral_top.png" alt="">
-  <img class="corner-bloom corner-right" src="./floral_bottom.png" alt="">
-  <div class="daisy-field" aria-hidden="true"><span class="daisy-drop" style="--x:10%;--size:18px;--delay:0.2s;--dur:4.2s;--drift:24px;--rot:240deg;--o:0.45">❀</span><span class="daisy-drop" style="--x:20%;--size:15px;--delay:0.5s;--dur:4.8s;--drift:-30px;--rot:200deg;--o:0.4">✿</span><span class="daisy-drop" style="--x:32%;--size:18px;--delay:0.8s;--dur:4.0s;--drift:40px;--rot:260deg;--o:0.5">❀</span><span class="daisy-drop" style="--x:47%;--size:16px;--delay:1.1s;--dur:4.5s;--drift:-24px;--rot:300deg;--o:0.45">✿</span><span class="daisy-drop" style="--x:58%;--size:22px;--delay:1.5s;--dur:5.0s;--drift:35px;--rot:210deg;--o:0.55">❀</span><span class="daisy-drop" style="--x:72%;--size:16px;--delay:1.9s;--dur:4.1s;--drift:-18px;--rot:280deg;--o:0.45">✿</span><span class="daisy-drop" style="--x:82%;--size:19px;--delay:2.3s;--dur:4.6s;--drift:30px;--rot:240deg;--o:0.48">❀</span><span class="daisy-drop" style="--x:90%;--size:16px;--delay:2.7s;--dur:4.9s;--drift:-26px;--rot:310deg;--o:0.4">✿</span><span class="daisy-drop" style="--x:26%;--size:14px;--delay:3.0s;--dur:4.3s;--drift:22px;--rot:230deg;--o:0.38">❀</span><span class="daisy-drop" style="--x:64%;--size:15px;--delay:3.4s;--dur:4.4s;--drift:-16px;--rot:205deg;--o:0.38">✿</span></div>
-
-  <div class="flower" aria-hidden="true">✿</div>
-  <h1>BLOOMING</h1>
+  <div class="daisy-rain" aria-hidden="true"><span class="daisy" style="--left:30%;--size:18px;--delay:2.6s;--duration:6.42s;--drift:28px;--spin:419deg;--opacity:0.62"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:33%;--size:27px;--delay:0.28s;--duration:4.76s;--drift:47px;--spin:235deg;--opacity:0.6"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:70%;--size:27px;--delay:0.26s;--duration:6.42s;--drift:-68px;--spin:467deg;--opacity:0.4"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:80%;--size:25px;--delay:3.07s;--duration:5.7s;--drift:-46px;--spin:420deg;--opacity:0.53"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:17%;--size:23px;--delay:3.0s;--duration:5.36s;--drift:-81px;--spin:424deg;--opacity:0.4"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:26%;--size:25px;--delay:0.39s;--duration:5.63s;--drift:-90px;--spin:430deg;--opacity:0.63"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:48%;--size:21px;--delay:3.17s;--duration:4.32s;--drift:-25px;--spin:189deg;--opacity:0.55"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:15%;--size:24px;--delay:2.57s;--duration:5.45s;--drift:91px;--spin:382deg;--opacity:0.52"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:60%;--size:21px;--delay:0.73s;--duration:6.1s;--drift:27px;--spin:432deg;--opacity:0.58"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:30%;--size:16px;--delay:2.45s;--duration:4.06s;--drift:34px;--spin:200deg;--opacity:0.46"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:30%;--size:13px;--delay:2.96s;--duration:5.05s;--drift:80px;--spin:368deg;--opacity:0.43"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:19%;--size:25px;--delay:1.98s;--duration:5.74s;--drift:-41px;--spin:217deg;--opacity:0.43"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:83%;--size:14px;--delay:1.78s;--duration:5.92s;--drift:45px;--spin:251deg;--opacity:0.5"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:56%;--size:15px;--delay:3.05s;--duration:5.67s;--drift:14px;--spin:236deg;--opacity:0.62"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:37%;--size:23px;--delay:1.32s;--duration:6.35s;--drift:-19px;--spin:179deg;--opacity:0.38"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:35%;--size:13px;--delay:1.74s;--duration:5.61s;--drift:-18px;--spin:208deg;--opacity:0.66"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:54%;--size:13px;--delay:1.7s;--duration:5.5s;--drift:36px;--spin:348deg;--opacity:0.49"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:34%;--size:25px;--delay:1.21s;--duration:5.53s;--drift:-43px;--spin:219deg;--opacity:0.41"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:59%;--size:16px;--delay:0.56s;--duration:6.19s;--drift:56px;--spin:156deg;--opacity:0.62"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:80%;--size:13px;--delay:2.03s;--duration:5.11s;--drift:-30px;--spin:455deg;--opacity:0.6"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:37%;--size:22px;--delay:1.32s;--duration:5.07s;--drift:92px;--spin:424deg;--opacity:0.67"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:54%;--size:24px;--delay:0.75s;--duration:5.61s;--drift:44px;--spin:455deg;--opacity:0.47"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:42%;--size:13px;--delay:2.28s;--duration:5.47s;--drift:86px;--spin:166deg;--opacity:0.68"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:93%;--size:27px;--delay:2.75s;--duration:4.59s;--drift:-68px;--spin:259deg;--opacity:0.59"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:88%;--size:24px;--delay:1.98s;--duration:5.0s;--drift:1px;--spin:167deg;--opacity:0.42"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span><span class="daisy" style="--left:37%;--size:17px;--delay:1.11s;--duration:5.26s;--drift:-35px;--spin:422deg;--opacity:0.54"><svg aria-hidden="true" viewBox="0 0 100 100"><use href="#daisySymbol"/></svg></span></div>
+  <div class="flower" aria-hidden="true">🌿</div>
+  <h1>Blooming</h1>
   <p class="date">October 18, 2026</p>
   <section id="countdown">
     <div class="divider"></div>
@@ -159,7 +122,7 @@ h1{font-family:'Z003','URW Chancery L','Apple Chancery','Snell Roundhand','Segoe
     <div id="clock" class="clock">— 小時 — 分 — 秒</div>
     <p class="hint">婚禮尾聲，<br>這份專屬於您的祝福<br>即將綻放。</p>
     <p class="quote">Every flower blooms at its own time.</p>
-    <img class="signature-image" src="./signature.png" alt="Melvin &amp; Irene">
+    <img class="sign-image" src="./signature.png" alt="Melvin & Irene 手寫簽名">
   </section>
   <section id="blessing" hidden>
     <div class="divider"></div>
@@ -167,8 +130,7 @@ h1{font-family:'Z003','URW Chancery L','Apple Chancery','Snell Roundhand','Segoe
       <p class="small">這一份 Blooming，獻給</p>
       <h2 class="guest-name" id="guestName"></h2>
       <p class="message" id="guestMessage"></p>
-      <div class="signature">謝謝你，成為我們生命裡的一部分。<img src="./signature.png" alt="Melvin &amp; Irene" class="signature-image"><span class="signature-date">2026.10.18</span></div>
-      <img src="./mi_icon.png" alt="M I monogram" class="mi-icon">
+      <div class="signature">謝謝你，成為我們生命裡的一部分。<img class="sign-image" src="./signature.png" alt="Melvin & Irene 手寫簽名"><div class="sign-date">2026.10.18</div></div>
     </div>
     <div id="missing" hidden>
       <h2 class="guest-name">還找不到這份專屬祝福</h2>
