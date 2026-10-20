@@ -83,6 +83,16 @@
   @media(max-width:600px){.envelope-wrap{height:170px}.envelope-scene{width:min(260px,80vw);height:164px}.env-back,.env-front{width:200px;height:112px}.env-flap{width:200px;height:70px;bottom:74px}.env-letter{width:166px;height:94px}.env-letter .mini-sign{width:114px}}
   @media(prefers-reduced-motion:reduce){.envelope-scene,.env-flap,.env-letter,#guestContent{animation:none!important}.envelope-wrap{display:none}}
 
+
+  /* #106 慧玲阿姨：婚後特別加筆，與若雯原始祝福分開呈現 */
+  .aunt-afterword{margin-top:30px;padding-top:24px;border-top:1px solid #e7dfd1;text-align:left}
+  .aunt-afterword-label{font-size:13px;letter-spacing:.08em;color:#8b8077;text-align:center;margin:0 0 14px}
+  .aunt-afterword-text{font-size:15px;line-height:2.05;color:#65615d;white-space:pre-wrap;margin:0 0 20px}
+  .aunt-afterword-photo{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 4px 15px #554a3c17}
+  .aunt-afterword-photo-caption{text-align:center;color:#9a8e84;font-size:12px;margin:10px 0 0;letter-spacing:.05em}
+  .aunt-afterword .secret-invite{margin-top:25px;padding-top:20px}
+  @media(max-width:600px){.aunt-afterword-text{font-size:14px}}
+
 </style>
 <script src="./guests.js" defer></script>
 <script defer>
@@ -122,6 +132,7 @@
       $('guestName').textContent=guest.name;
       $('guestMessage').textContent=guest.message;
       $('secretInvite').hidden=!rickrollIds.has(id);
+      $('auntAfterword').hidden = id !== '106';
       $('guestContent').hidden=false;
       if(lastShown !== id){
         lastShown=id;
@@ -173,6 +184,16 @@
       <p class="small">這一份 Blooming，獻給</p>
       <h2 class="guest-name" id="guestName"></h2>
       <p class="message" id="guestMessage"></p>
+      <div id="auntAfterword" class="aunt-afterword" hidden>
+        <p class="aunt-afterword-label">婚後的小小追加 · 沐仁 🌼</p>
+        <p class="aunt-afterword-text">阿姨！婚禮結束後看到這張照片，還是忍不住想再謝謝妳一次！妳幫我們做的花藝真的太美了！小雛菊、花草和照片牆搭配得這麼自然又夢幻，完全就是我們心目中 Blooming 婚禮的樣子。真的很感謝妳花這麼多心思，把我們的婚禮變得這麼漂亮，也留下這麼美好的回憶！❤️</p>
+        <img class="aunt-afterword-photo" src="./aunt-floral.jpg" alt="婚禮迎賓區的木桌、花藝、小雛菊與照片牆" loading="lazy" decoding="async">
+        <p class="aunt-afterword-photo-caption">Blooming · 2026.10.18</p>
+        <div class="secret-invite">
+          <p>另外，阿姨！我們還偷偷留了一段悄悄話給妳 🤫<br>要不要點開看看？</p>
+          <a class="secret-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">點這裡，收下秘密驚喜 💌</a>
+        </div>
+      </div>
       <div id="secretInvite" class="secret-invite" hidden>
         <p>謝謝你再次打開我們的祝福！<br>想看我們留給你的更多悄悄話嗎？</p>
         <a class="secret-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">點這裡，收下秘密驚喜 💌</a>
