@@ -25,6 +25,12 @@
   .message{font-size:19px;line-height:2.1;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;color:#4f5350;margin:0}
   .signature{margin-top:38px;color:#8a7d7d;font-size:16px;line-height:1.9}
   .note{margin-top:25px;color:#8a7d7d;font-size:13px}
+
+  /* 婚後彩蛋：只有指定好友能看到，不動原始祝福內容 */
+  .secret-invite{margin-top:30px;padding:20px 15px 5px;text-align:center;border-top:1px solid #e9e3da}
+  .secret-invite p{margin:0 0 14px;font-size:15px;line-height:1.9;color:#807779}
+  .secret-link{display:inline-block;padding:11px 23px;border-radius:999px;border:1px solid #c9b6a4;background:#f7f2eb;color:#655958;text-decoration:none;font-size:15px;letter-spacing:.5px;transition:background .2s,transform .2s}
+  .secret-link:hover,.secret-link:focus-visible{background:#eee3d6;transform:translateY(-1px)}
   [hidden]{display:none!important}
   @keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
   @media(max-width:600px){body{padding:15px 12px;align-items:flex-start}.card{margin:10px 0;padding:55px 26px 46px;border-radius:26px;min-height:calc(100dvh - 50px)}h1{font-size:36px}.date{font-size:16px;letter-spacing:2.8px}.small,.hint{font-size:16px}.days{font-size:50px}.clock{font-size:16px}.guest-name{font-size:23px}.message{font-size:17px;line-height:2}.flower{font-size:45px}.quote{margin-top:38px;font-size:15px}}
@@ -106,6 +112,7 @@
     }
     const idText = decodeURIComponent(location.hash.slice(1));
     const id = /^\d+$/.test(idText) ? String(Number(idText)) : '';
+    const rickrollIds = new Set(["2", "15", "16", "18", "19", "20", "28", "30", "40", "42", "43", "44", "45", "46", "47", "48", "49", "50", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "161", "162", "163", "164", "171", "172", "175", "176"]);
     const guest = window.BLOOM_GUESTS && window.BLOOM_GUESTS[id];
     $('guestContent').hidden=!guest;
     $('missing').hidden=!!guest;
@@ -114,6 +121,7 @@
       // textContent，不把祝福當 HTML 執行，避免符號破版。
       $('guestName').textContent=guest.name;
       $('guestMessage').textContent=guest.message;
+      $('secretInvite').hidden=!rickrollIds.has(id);
       $('guestContent').hidden=false;
       if(lastShown !== id){
         lastShown=id;
@@ -165,6 +173,10 @@
       <p class="small">這一份 Blooming，獻給</p>
       <h2 class="guest-name" id="guestName"></h2>
       <p class="message" id="guestMessage"></p>
+      <div id="secretInvite" class="secret-invite" hidden>
+        <p>謝謝你再次打開我們的祝福！<br>想看我們留給你的更多悄悄話嗎？</p>
+        <a class="secret-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">點這裡，收下秘密驚喜 💌</a>
+      </div>
       <div class="signature">謝謝你，成為我們生命裡的一部分。<img class="sign-image" src="./signature.png" alt="Melvin & Irene 手寫簽名"><div class="sign-date">2026.10.18</div></div>
     </div>
     <div id="missing" hidden>
